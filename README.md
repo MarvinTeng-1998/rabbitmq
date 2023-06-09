@@ -14,15 +14,12 @@
 
 2. 应用解耦
 
-![image-20230609144422827](/Users/dengbin/Library/Application Support/typora-user-images/image-20230609144422827.png)
-
 如果耦合调用系统，则一个系统出现故障则整体都会有问题。但是我们使用MQ进行应用的解耦，出故障的系统本应该要接受的消息被MQ缓存，等待出故障的系统重新上线，从而就能解决问题。用户无法感受到某个子系统的问题，从而保证了整个系统的高可用。
 
 3. 异步处理
 
 ​		有些服务调用时异步的，当A需要去请求B的服务的时候，传统的方式，需要B在执行完成后通过回调函数来给到A。但是有了MQ之后我们可以使用消息总线，当B处理完成后，会封装成消息发送给MQ，MQ收到后再将消息转发给A。这样既不用B提供callback函数，同时A也不需要时刻去循环确认B是否完成。A服务还能及时得到异步处理的消息。
 
-![image-20230609144631292](/Users/dengbin/Library/Application Support/typora-user-images/image-20230609144631292.png)
 
 ### 1.1.3 MQ的分类
 
@@ -78,8 +75,6 @@
 
 **消费者** - 用来消费消息的
 
-<img src="/Users/dengbin/Library/Application Support/typora-user-images/image-20230609155244544.png" alt="image-20230609155244544" style="zoom:50%;" />
-
 **Broker：**接受和分发消息的实体，RabbitMQ Server就是Message Broker
 
 **Vitual Host：**多租户和安全的场景下，把AMQP的基本组件划分到一个虚拟的分组中，类似于网络中的namespace的概念。当多个不同的用户使用同一个RabbitMQ Server提供的服务时，可以划分成多个vhost，每个用户在自己的vhost创建exchange/queue
@@ -128,4 +123,3 @@
 
 ​	如果消费者由于某种原因失去连接，连接关闭或者TCP连接丢失，导致消息未发送ACK确认，RabbitMQ将了解到消息未完全处理，并将对其重新排队。如果此时其他消费者可以处理，它将很快将其重新分发给另一个消费者。这样，即使一个消费者偶尔死亡，也可以确保不会丢失消息。
 
-![image-20230609181632562](/Users/dengbin/Library/Application Support/typora-user-images/image-20230609181632562.png)
