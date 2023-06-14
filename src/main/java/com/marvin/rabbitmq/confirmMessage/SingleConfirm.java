@@ -7,7 +7,7 @@ import java.util.UUID;
 
 /**
  * @TODO: 发布确认模式之 单个确认
- *               --> 发布1000个单独确认消息，耗时141ms
+ *
  * @author: dengbin
  * @create: 2023-06-11 23:55
  **/

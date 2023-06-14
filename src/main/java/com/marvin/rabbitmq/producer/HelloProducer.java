@@ -17,7 +17,7 @@ public class HelloProducer {
 
 
     // 创建一个队列
-    public static final String QUEUE_NAME = "hello";
+    public static final String QUEUE_NAME = "mirrior_hello";
 
     public static void main(String[] args) {
         // 创建一个连接工厂
@@ -25,9 +25,10 @@ public class HelloProducer {
         // 设置连接工厂的IP，连接rabbitmq的队列
         factory.setHost("127.0.0.1");
         // 设置用户名
-        factory.setUsername("admin");
+        factory.setUsername("root");
         // 设置密码
-        factory.setPassword("123");
+        factory.setPassword("123456");
+        factory.setPort(5672);
 
         try {
             // 创建连接
